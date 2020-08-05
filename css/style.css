@@ -21,9 +21,24 @@ body {
   background-color: #c7b198;
 }
 
-.header__add {
-  width: 200px;
-  height: 200px;
+.header__addBook {
+  position: fixed;
+  right: .5em;
+  top: .5em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: white;
+  font-size: 1.5em;
+  outline: none;
+  transition: .4s;
+}
+
+.header__addBook:hover {
+  cursor: pointer;
+  border: 1px solid #596e79;
+  box-shadow: 0 0 2px 2px #596e79;
 }
 
 .header h1 {
