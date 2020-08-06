@@ -14,14 +14,28 @@ function addBookToLibrary() {
 
     let book = new Book(title, author, pages);
     myLibrary.push(book);
-
+    displayBook(book);
 }
 
+function displayBook(book) {
+    const card = document.createElement('div');
+    card.classList.add('book');
+
+    card.innerHTML =
+        `<span class="book__img"></span>
+    <p class="book__author">Author: ${book.author}</p>
+    <p class="book__title">Title: ${book.title}</p>  
+    <p class="book__pages">No. of pages: ${book.pages}</p>`;
+
+
+    const container = document.querySelector('.containter');
+    container.appendChild(card);
+}
 
 
 // function displayBook(book) {
 //     const card = document.createElement('div');
-//     card.classList.add('card');
+//     card.className = 'card';
 
 //     card.innerHTML =
 //         `<span class="book__img"></span>
