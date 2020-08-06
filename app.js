@@ -1,4 +1,5 @@
 let myLibrary = [];
+const container = document.querySelector('.containter');
 
 function Book(title, author, pages) {
     this.title = title;
@@ -6,62 +7,52 @@ function Book(title, author, pages) {
     this.pages = pages;
 }
 
-
 function addBookToLibrary() {
     let title = prompt('Book title: ');
     let author = prompt('Author name: ');
     let pages = prompt('Number of book pages: ');
 
-    let book = new Book(title, author, pages);
-    myLibrary.push(book);
-    displayBook(book);
+    myLibrary.push(new Book(title, author, pages));
+    clearView();
+    myLibrary.forEach(book => displayBooks(book));
 }
 
-function displayBook(book) {
+function displayBooks(book) {
     const card = document.createElement('div');
     card.classList.add('book');
+    card.id = `${myLibrary.indexOf(book)}`
 
     card.innerHTML =
-        `<span class="book__img"></span>
+        `<span class="book__img"><i class="far fa-times-circle book__img--delete"></i></span>
     <p class="book__author">Author: ${book.author}</p>
     <p class="book__title">Title: ${book.title}</p>  
     <p class="book__pages">No. of pages: ${book.pages}</p>`;
 
-
-    const container = document.querySelector('.containter');
     container.appendChild(card);
 }
 
+function deleteBook(el) {
+    if (el.target.classList.contains('book__img--delete')) {
+        let index = el.target.parentElement.parentElement.id;
+        el.target.parentElement.parentElement.remove();
+        myLibrary.splice(index, 1);
+        clearView();
+        myLibrary.forEach(book => displayBooks(book));
+    }
+}
+document.addEventListener('click', deleteBook);
 
-// function displayBook(book) {
-//     const card = document.createElement('div');
-//     card.className = 'card';
+function logBooks() {
+    console.log(myLibrary)
+}
+const logBtn = document.querySelector('.logBook');
+logBtn.addEventListener('click', logBooks)
 
-//     card.innerHTML =
-//         `<span class="book__img"></span>
-//     <p class="book__author">Author: ${book.author}</p>
-//     <p class="book__title">Title: ${book.title}</p>  
-//     <p class="book__pages">No. of pages: ${book.pages}</p>`;
-
-//     const container = document.querySelector('.container');
-//     container.appendChild(card);
-// }
+function clearView() {
+    container.innerHTML = '';
+}
 
 const addBtn = document.querySelector('.header__addBook');
 addBtn.addEventListener('click', addBookToLibrary);
-
-
-
-// const card = document.createElement('div');
-// const container = document.querySelector('containter');
-// container.appendChild(card);
-// card.classList.add('card')
-// card.innerHTML =
-//     `<span class="book__img"></span>
-//             <p class="book__author">Author:</p>
-//             <p class="book__title">Title: </p>  
-//             <p class="book__pages">No. of pages:</p>`;
-
-
 
 
