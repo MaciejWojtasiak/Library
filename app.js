@@ -42,12 +42,6 @@ function deleteBook(el) {
 }
 document.addEventListener('click', deleteBook);
 
-function logBooks() {
-    console.log(myLibrary)
-}
-const logBtn = document.querySelector('.logBook');
-logBtn.addEventListener('click', logBooks)
-
 function clearView() {
     container.innerHTML = '';
 }
